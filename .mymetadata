@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="pscjgl"
+  id="myeclipse.1429699311910"
+  context-root="/pscjgl"
+  j2ee-spec="5.0"
+  archive="pscjgl.war">
+  <attributes>
+    <attribute name="webrootdir" value="/WebRoot" />
+  </attributes>
+</project-module>
+

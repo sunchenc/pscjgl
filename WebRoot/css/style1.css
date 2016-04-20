@@ -1,0 +1,8 @@
+a {font-size:20px;
+   text-decoration:none;
+   }
+a:link{color:#666666;}
+a:visited{color:#996600;}
+a:hover{color:#ECBD00;
+        text-decoration:underline;}
+a:active{color:#FF3399;}

@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/pscj?characterEncoding=gbk">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="888888"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>	<!-- 定义POJO的映射文件 -->
+	    <property name="mappingResources">
+		<list>
+			    <value>org/model/TbLogin.hbm.xml</value>
+		        <value>org/model/TbStudent.hbm.xml</value>
+		        <value>org/model/TbWork.hbm.xml</value>
+		        <value>org/model/TbClass.hbm.xml</value>
+		        <value>org/model/TbTeacher.hbm.xml</value>
+		        <value>org/model/RoleResource.hbm.xml</value>
+		        <value>org/model/Announcement.hbm.xml</value>
+		     
+		</list>
+	    </property>
+	    	
+	</bean>
+	<bean id="loginDao" class="org.dao.imp.LoginDaoImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="loginService" class="org.service.imp.LoginServiceManage">
+		<property name="login">
+			<ref bean="loginDao"/>
+		</property>
+	</bean>
+	<bean id="loginAction" class="org.action.LoginAction">
+		<property name="loginService">
+			<ref bean="loginService" />
+		</property>
+     </bean>
+     
+       <bean id="addTeacherDao" class="org.dao.imp.AddTeacherDaoImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+			<!-- 6.11加 -->
+		<property name="loginService">
+			<ref bean="loginService" />
+		</property>
+	</bean>
+     <bean id="addTeacherService" class="org.service.imp.AddTeacherServiceManage">
+		<property name="addTeacherDao">
+			<ref bean="addTeacherDao" />
+		</property>
+	    	<property name="loginDao">
+		    <ref bean="loginDao"/>
+		</property>
+	 </bean>
+     <bean id="addTeacherAction" class="org.action.AddTeacherAction">
+		<property name="addTeacherService">
+			<ref bean="addTeacherService" />
+		</property>
+			<property name="loginService">
+			<ref bean="loginService" />
+		</property>
+     </bean>
+     
+       <bean id="classDao" class="org.dao.imp.ClassDaoImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	  <bean id="classService" class="org.service.imp.ClassServiceManage">
+		<property name="classDao">
+			<ref bean="classDao" />
+		</property>
+		<!-- 5月13新加 -->
+		<property name="addTeacherDao">
+			<ref bean="addTeacherDao" />
+		</property>
+     </bean>
+     <bean id="addStudentDao" class="org.dao.imp.AddStudentDaoImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<!-- 6.11加 -->
+		<property name="loginService">
+			<ref bean="loginService" />
+		</property>
+	</bean>
+     <bean id="addStudentService" class="org.service.imp.AddStudentServiceManage">
+		<property name="addStudentDao">
+			<ref bean="addStudentDao" />
+		</property>
+		<property name="classDao">
+		    <ref bean="classDao"/>
+		</property>
+			<property name="workDao">
+		    <ref bean="workDao"/>
+		</property>
+			<property name="loginDao">
+		    <ref bean="loginDao"/>
+		</property>
+	
+		
+     </bean>
+     <bean id="addStudentAction" class="org.action.AddStudentAction">
+		<property name="addStudentService">
+			<ref bean="addStudentService" />
+		</property>		
+			<property name="loginService">
+			<ref bean="loginService" />
+		</property>
+		<property name="classService">
+			<ref bean="classService" />
+		</property>
+     </bean>  
+	
+       <bean id="workDao" class="org.dao.imp.WorkDaoImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+     <bean id="workService" class="org.service.imp.WorkServiceManage">
+		<property name="workDao">
+			<ref bean="workDao" />
+		</property>
+		<!-- 5.13为了查看某老师全部学生的成绩而加 -->
+		<property name="classDao">
+			<ref bean="classDao" />
+		</property>
+		<property name="addStudentDao">
+			<ref bean="addStudentDao" />
+		</property>
+     </bean>
+     
+      <bean id="workAction" class="org.action.WorkAction">
+		<property name="workService">
+			<ref bean="workService" />
+		</property>
+     </bean>
+     
+     <bean id="checkWorkAction" class="org.action.CheckWorkAction">
+		<property name="workService">
+			<ref bean="workService" />
+		</property>
+		<!-- 5.13为了查看某老师全部学生的成绩而加 -->
+	   <property name="studentService">
+			<ref bean="addStudentService" />
+		</property>
+			<property name="classService">
+			<ref bean="classService" />
+		</property>
+     </bean>
+          <bean id="summaryOfGradeAction" class="org.action.SummaryOfGradeAction">
+		<property name="workService">
+			<ref bean="workService" />
+		</property>
+		<!-- 5.19为了查看某老师全部学生的成绩而加 -->
+	   <property name="studentService">
+			<ref bean="addStudentService" />
+		</property>
+	   </bean>
+     
+        <bean id="studentSeeWorkAction" class="org.action.StudentSeeWorkAction">
+		<property name="workService">
+			<ref bean="workService" />
+		</property>
+	 </bean>
+   
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+       <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+     </bean>
+    
+    <bean id="updateWorkAction" class="org.action.UpdateWorkAction">
+		<property name="workService">
+			<ref bean="workService" />
+		</property>
+     </bean>
+       <bean id="studentTotalGradeAction" class="org.action.StudentTotalGradeAction">
+		<!-- 5.19为了查看某老师全部学生的成绩而加 -->
+	   <property name="studentService">
+			<ref bean="addStudentService" />
+		</property>
+			<property name="classService">
+			<ref bean="classService" />
+		</property>
+     </bean>
+       <bean id="outputToExcelAction" class="org.action.OutputToExcelAction">
+		  <property name="studentService">
+			<ref bean="addStudentService" />
+		</property>
+			<property name="classService">
+			<ref bean="classService" />
+		</property>
+     </bean>
+    
+     <bean id="roleResourceDao" class="org.dao.imp.RoleResourceDaoImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="roleResourceService" class="org.service.imp.RoleResourceManage">
+		<property name="roleResourceDao">
+			<ref bean="roleResourceDao"/>
+		</property>
+	</bean>
+	
+	<bean id="publishAnmDao" class="org.dao.imp.PublishAnmDaoImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="publishAnmService" class="org.service.imp.PublishAnmManage">
+		<property name="publishAnmDao">
+			<ref bean="publishAnmDao"/>
+		</property>
+	</bean>
+	<bean id="publishAnmAction" class="org.action.PublishAnmAction">
+		<property name="publishAnmService">
+			<ref bean="publishAnmService" />
+		</property>
+     </bean>
+     	<bean id="seeAnmAction" class="org.action.SeeAnmAction">
+		<property name="publishAnmService">
+			<ref bean="publishAnmService" />
+		</property>
+     </bean>
+  
+ 
+     <bean id="showTeacherAction" class="org.action.ShowTeacherAction">
+		<property name="addTeacherService">
+			<ref bean="addTeacherService" />
+		</property>
+     </bean>
+         <bean id="showStudentAction" class="org.action.ShowStudentAction">
+		<property name="classService">
+			<ref bean="classService" />
+		</property>
+		<property name="addStudentService">
+			<ref bean="addStudentService" />
+		</property>
+     </bean>
+     
+     <bean id="modifyPasswordAction" class="org.action.ModifyPasswordAction" scope="prototype">
+		<property name="loginService">
+			<ref bean="loginService" />
+		</property>
+     </bean>
+       <bean id="deleteStudentAction" class="org.action.DeleteStudentAction">
+		<property name="addStudentService">
+			<ref bean="addStudentService" />
+		</property>
+     </bean>
+      <bean id="deleteTeacherAction" class="org.action.DeleteTeacherAction">
+		<property name="addTeacherService">
+			<ref bean="addTeacherService" />
+		</property>
+		<property name="classService">
+			<ref bean="classService" />
+		</property>
+		
+     </bean>
+     
+    <bean id="deleteAnmAction" class="org.action.DeleteAnmAction">
+		<property name="publishAnmService">
+			<ref bean="publishAnmService" />
+		</property>
+     </bean>
+     <!-- 5.24加 -->
+      <bean id="seeAllStudentAction" class="org.action.SeeAllStudentAction">
+		<property name="addStudentService">
+			<ref bean="addStudentService" />
+		</property>
+     </bean>
+       <bean id="seeClassAction" class="org.action.SeeClassAction">
+		<property name="classService">
+			<ref bean="classService" />
+		</property>
+		<property name="addTeacherService">
+			<ref bean="addTeacherService" />
+		</property>
+		
+     </bean>
+       <bean id="addClassAction" class="org.action.AddClassAction">
+		<property name="classService">
+			<ref bean="classService" />
+		</property>
+		<property name="addTeacherService">
+			<ref bean="addTeacherService" />
+		</property>
+		
+     </bean>
+      <bean id="addClassViewAction" class="org.action.AddClassViewAction">
+		<property name="classService">
+			<ref bean="classService" />
+		</property>
+		<property name="addTeacherService">
+			<ref bean="addTeacherService" />
+		</property>
+		
+     </bean>  
+       <bean id="addOneStudentAction" class="org.action.AddOneStudentAction">
+		<property name="classService">
+			<ref bean="classService" />
+		</property>
+		<property name="addStudentService">
+			<ref bean="addStudentService" />
+		</property>		
+			<property name="loginService">
+			<ref bean="loginService" />
+		</property>
+		</bean>
+		 <bean id="addOneTeacherAction" class="org.action.AddOneTeacherAction">
+		<property name="addTeacherService">
+			<ref bean="addTeacherService" />
+		</property>		
+			<property name="loginService">
+			<ref bean="loginService" />
+		</property>
+		
+     </bean> 
+       <bean id="studentViewTotalAction" class="org.action.StudentViewTotalAction">
+		<property name="workService">
+			<ref bean="workService" />
+		</property>
+		<property name="addStudentService">
+			<ref bean="addStudentService" />
+		</property>		
+
+     </bean>
+      <bean id="deleteClassAction" class="org.action.DeleteClassAction">
+		<property name="classService">
+			<ref bean="classService" />
+		</property>
+		<property name="addStudentService">
+			<ref bean="addStudentService" />
+		</property>		
+
+     </bean> 
+     
+  <!-- 配置事务拦截器 -->
+     <bean id="transactionInterceptor" 
+
+class="org.springframework.transaction.interceptor.TransactionInterceptor">
+       <property name="transactionManager" ref="transactionManager"/>
+       <property name="transactionAttributes">
+          <props>
+            <prop key="delete*">PROPAGATION_REQUIRED</prop>
+            <prop key="*">PROPAGATION_REQUIRED</prop>
+          </props>
+       </property>
+     </bean>
+     <bean 
+
+class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"
+
+>
+       <property name="beanNames">
+         <list>
+           <value>loginService</value>
+           <value>addStudentService</value>
+           <value>workService</value>
+           <value>classService</value>
+           <value>roleResourceService</value>
+           <value>publishAnmService</value>
+           <value>addTeacherService</value>
+         </list>
+       </property>
+       <property name="interceptorNames">
+          <list>
+            <value>transactionInterceptor</value>
+          </list>
+       </property>
+     </bean>
+   
+</beans>
+		

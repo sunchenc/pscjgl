@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="default" extends="struts-default">
+	<interceptors>
+	  <interceptor name="myFilter" class="org.tool.MyFilter"/>
+	  <interceptor name="PriorityFilter" class="org.tool.PriorityFilter"/>
+	  <interceptor-stack name="stackFilter" >
+	     <interceptor-ref name="myFilter"></interceptor-ref>
+	     <interceptor-ref name="PriorityFilter"></interceptor-ref>
+	  </interceptor-stack>
+	</interceptors>
+	<global-results>
+	   <result name="login">/login.jsp</result>
+	</global-results>
+	 
+<action name="login" class="loginAction">
+			<result name="success">/login_success.jsp</result>
+			<result name="error">/login.jsp</result>
+			<result name="input">/login.jsp</result>
+</action>
+
+<action name="uploadWork" class="workAction">
+			<result name="success">/upload_success.jsp</result>
+			<result name="error">/uploadwork.jsp</result>   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="checkwork" class="checkWorkAction">
+			<result name="success">/checkwork.jsp</result>
+			<result name="error">/login_success.jsp</result>   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="studentSeeWork" class="studentSeeWorkAction">
+			<result name="success">/showstu.jsp</result>
+			<result name="error">/login_success.jsp</result>   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+
+<action name="updateWork" class="updateWorkAction">
+			 <result name="success" type="redirectAction">checkwork</result>
+			<result name="error">/login_success.jsp</result>   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="studentTotalGrade" class="studentTotalGradeAction">
+            <result name="success">/total.jsp</result>
+			<result name="error">/login_success.jsp</result>   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="outputToExcel" class="outputToExcelAction">
+            <result name="success">/total.jsp</result>
+			<result name="error">/login_success.jsp</result>   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="seeAnm" class="seeAnmAction">
+            <result name="success">/seeAnm.jsp</result>
+			<result name="error">/login_success.jsp</result>   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="publishAnm" class="publishAnmAction">
+            <result name="success" type="redirectAction">seeAnm</result>
+			<result name="error">/publish.jsp</result>   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="showTeacher" class="showTeacherAction">
+            <result name="success">/check/showteacher.jsp</result>
+			<result name="error">/check/addteacher.jsp</result>   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="addTeacher" class="addTeacherAction">
+			<result name="success" type="redirectAction">showTeacher</result>
+			<result name="error">/login_success.jsp</result>   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"></interceptor-ref>
+
+</action>
+<action name="showStudent" class="showStudentAction">
+            <result name="success">/check/showstudent.jsp</result>
+			<result name="error">/check/addstudent.jsp</result>   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+
+<action name="addStudent" class="addStudentAction">
+			<result name="success" type="redirectAction">showStudent</result>
+			<result name="error">/login_success.jsp</result>   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"></interceptor-ref>
+
+</action>
+<action name="modifyPassword" class="modifyPasswordAction">
+            <result name="success">/</result>
+  			<result name="input">/check/modifypassword.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="deleteStudent" class="deleteStudentAction">
+            <result name="success">/deletesuccess.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+
+<action name="summaryOfGrade" class="summaryOfGradeAction">
+            <result name="success">/summarysuccess.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="deleteAnm" class="deleteAnmAction">
+            <result name="success" type="redirectAction">seeAnm</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="seeAllStudent" class="seeAllStudentAction">
+            <result name="success">check/seeallstudent.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="seeClass" class="seeClassAction">
+            <result name="success">check/seeallclass.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="modifyClassView" class="seeClassAction" method="updateClassView">
+            <result name="success">check/updateClassView.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="updateClass" class="seeClassAction" method="updateClass">
+            <result name="success" type="redirectAction">seeClass</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="addClass" class="addClassAction">
+            <result name="success">/summarysuccess.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="addClassView" class="addClassViewAction">
+            <result name="success">check/addclass.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="addStudentView" class="addOneStudentAction" method="addStudentView">
+            <result name="success">check/addStudentView.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="addOneStudent" class="addOneStudentAction" method="addStudent">
+            <result name="success">/addonestusuccess.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="addOneTeacher" class="addOneTeacherAction">
+            <result name="success" type="redirectAction">showTeacher</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+
+<action name="studentViewTotal" class="studentViewTotalAction">
+            <result name="success">check/studentViewTotal.jsp</result>
+            <result name="error">/error.jsp</result>   
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="deleteTeacher" class="deleteTeacherAction">
+            <result name="success" type="redirectAction">showTeacher</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="modifyTeacherView" class="showTeacherAction" method="updateTeacherView">
+            <result name="success">check/updateTeacherView.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="updateTeacher" class="showTeacherAction" method="updateTeacher">
+            <result name="success" type="redirectAction">showTeacher</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="modifyStudentView" class="showStudentAction" method="updateStudentView">
+            <result name="success">check/updateStudentView.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="updateStudent" class="showStudentAction" method="updateStudent">
+            <result name="success" type="redirectAction">showStudent</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+<action name="deleteClass" class="deleteClassAction">
+            <result name="success" type="redirectAction">seeClass</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="stackFilter"/>
+</action>
+
+</package>
+</struts>

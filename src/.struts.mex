@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="default" location="0,0" size="0,0">
+    <action name="login" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="login_success.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="login.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="login.jsp" />
+      </result>
+    </action>
+    <action name="uploadWork" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="upload_success.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="uploadwork.jsp" />
+      </result>
+    </action>
+    <action name="checkwork" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="checkwork.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="login_success.jsp" />
+      </result>
+    </action>
+    <action name="studentSeeWork" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="showstu.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="login_success.jsp" />
+      </result>
+    </action>
+    <action name="updateWork" location="0,0" size="0,0">
+      <result name="success" />
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="login_success.jsp" />
+      </result>
+    </action>
+    <action name="studentTotalGrade" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="total.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="login_success.jsp" />
+      </result>
+    </action>
+    <action name="outputToExcel" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="total.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="login_success.jsp" />
+      </result>
+    </action>
+    <action name="seeAnm" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="seeAnm.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="login_success.jsp" />
+      </result>
+    </action>
+    <action name="publishAnm" location="0,0" size="0,0">
+      <result name="success" />
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="publish.jsp" />
+      </result>
+    </action>
+    <action name="showTeacher" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="showteacher.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="addteacher.jsp" />
+      </result>
+    </action>
+    <action name="addTeacher" location="0,0" size="0,0">
+      <result name="success" />
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="login_success.jsp" />
+      </result>
+    </action>
+    <action name="showStudent" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="showstudent.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="addstudent.jsp" />
+      </result>
+    </action>
+    <action name="addStudent" location="0,0" size="0,0">
+      <result name="success" />
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="login_success.jsp" />
+      </result>
+    </action>
+    <action name="modifyPassword" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="modifypswsuccess.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="modifypassword.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="modifypassword.jsp" />
+      </result>
+    </action>
+    <action name="deleteStudent" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="deletesuccess.jsp" />
+      </result>
+    </action>
+    <action name="summaryOfGrade" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="summarysuccess.jsp" />
+      </result>
+    </action>
+    <action name="deleteAnm" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="seeAllStudent" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="seeallstudent.jsp" />
+      </result>
+    </action>
+    <action name="seeClass" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="seeallclass.jsp" />
+      </result>
+    </action>
+    <action name="modifyClassView" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="updateClassView.jsp" />
+      </result>
+    </action>
+    <action name="updateClass" location="0,0" size="0,0">
+      <result name="success" />
+    </action>
+    <action name="addClass" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="summarysuccess.jsp" />
+      </result>
+    </action>
+    <action name="addClassView" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="addclass.jsp" />
+      </result>
+    </action>
+    <action name="addStudentView" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="addStudentView.jsp" />
+      </result>
+    </action>
+    <action name="addOneStudent" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="addonestusuccess.jsp" />
+      </result>
+    </action>
+    <action name="studentViewTotal" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="studentViewTotal.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="error.jsp" />
+      </result>
+    </action>
+  </package>
+  <webResource name="login_success.jsp" path="/login_success.jsp" location="0,0" size="0,0" />
+  <webResource name="login.jsp" path="/login.jsp" location="0,0" size="0,0" />
+  <webResource name="add_success.jsp" path="/add_success.jsp" location="0,0" size="0,0" />
+  <webResource name="upload_success.jsp" path="/upload_success.jsp" location="0,0" size="0,0" />
+  <webResource name="uploadwork.jsp" path="/uploadwork.jsp" location="0,0" size="0,0" />
+  <webResource name="checkwork.jsp" path="/checkwork.jsp" location="0,0" size="0,0" />
+  <webResource name="detail.jsp" path="/detail.jsp" location="0,0" size="0,0" />
+  <webResource name="total.jsp" path="/total.jsp" location="0,0" size="0,0" />
+  <webResource name="announce.jsp" path="/announce.jsp" location="0,0" size="0,0" />
+  <webResource name="publish.jsp" path="/publish.jsp" location="0,0" size="0,0" />
+  <webResource name="seeAnm.jsp" path="/seeAnm.jsp" location="0,0" size="0,0" />
+  <webResource name="showteacher.jsp" path="/check/showteacher.jsp" location="0,0" size="0,0" />
+  <webResource name="addteacher.jsp" path="/check/addteacher.jsp" location="0,0" size="0,0" />
+  <webResource name="showstudent.jsp" path="/check/showstudent.jsp" location="0,0" size="0,0" />
+  <webResource name="addstudent.jsp" path="/check/addstudent.jsp" location="0,0" size="0,0" />
+  <webResource name="modifypassword.jsp" path="/modifypassword.jsp" location="0,0" size="0,0" />
+  <webResource name="success.jsp" path="/success.jsp" location="0,0" size="0,0" />
+  <webResource name="deletesuccess.jsp" path="/deletesuccess.jsp" location="0,0" size="0,0" />
+  <webResource name="showstu.jsp" path="/showstu.jsp" location="0,0" size="0,0" />
+  <webResource name="summarysuccess.jsp" path="/summarysuccess.jsp" location="0,0" size="0,0" />
+  <webResource name="seeallstudent.jsp" path="check/seeallstudent.jsp" location="0,0" size="0,0" />
+  <webResource name="seeallclass.jsp" path="check/seeallclass.jsp" location="0,0" size="0,0" />
+  <webResource name="updateClassView.jsp" path="check/updateClassView.jsp" location="0,0" size="0,0" />
+  <webResource name="updateClasssuccess.jsp" path="/updateClasssuccess.jsp" location="0,0" size="0,0" />
+  <webResource name="addclass.jsp" path="check/addclass.jsp" location="0,0" size="0,0" />
+  <webResource name="addStudentView.jsp" path="check/addStudentView.jsp" location="0,0" size="0,0" />
+  <webResource name="addonestusuccess.jsp" path="/addonestusuccess.jsp" location="0,0" size="0,0" />
+  <webResource name="modifypswsuccess.jsp" path="/modifypswsuccess.jsp" location="0,0" size="0,0" />
+  <webResource name="modifypassword.jsp" path="check/modifypassword.jsp" location="0,0" size="0,0" />
+  <webResource name="studentViewTotal.jsp" path="check/studentViewTotal.jsp" location="0,0" size="0,0" />
+  <webResource name="error.jsp" path="/error.jsp" location="0,0" size="0,0" />
+</Struts2Diagram>
+
