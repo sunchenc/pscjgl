@@ -60,7 +60,7 @@ public void setAddTeacherService(AddTeacherService addTeacherService) {
 		tbclass1.setClassName(tbClass.getClassName());
 		tbclass1.setNumber(tbClass.getNumber());
 		tbclass1.setTeacher(addTeacherService.find(tbClass.getTeacher().getTeacherId()));
-		classService.add(tbClass);       //是不是出错了。
+		classService.add(tbClass);       //是不是出错了。..
 		
 	
     	out.print("<script>alert('添加成功！')</script>");
